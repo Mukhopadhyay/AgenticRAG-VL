@@ -2,7 +2,12 @@ from rag.embedder import Embedder
 from rag.vectorstore import VectorStore
 from rag.retriever import Retriever
 from llm.client import get_llm
-from typing import Generator
+from typing import AsyncGenerator
+from rich import print as rich_print
+
+
+def print(*args, **kwargs):
+    rich_print("[red bold]RAG-Pipeline[/red bold]", *args, **kwargs)
 
 
 class RAGPipeline:
@@ -61,8 +66,9 @@ Question: {query}
 
         return str(response.content)
 
-    def stream(self, query: str) -> Generator[str, None, None]:
+    async def astream(self, query: str) -> AsyncGenerator[str, None]:
         results = self.retriever.retrieve(query)
+        print(f"Retrieved {len(results)} relevant documents for the query.")
 
         if not results:
             yield "No relevant documents were found for your query."
@@ -89,8 +95,7 @@ Context:
 Question: {query}
 """
 
-        for chunk in self.llm.stream(prompt):
-
+        async for chunk in self.llm.astream(prompt):
             if not chunk.content:
                 continue
 
@@ -102,6 +107,5 @@ Question: {query}
                     if isinstance(item, dict):
                         if item.get("type") == "text":
                             yield item.get("text", "")
-
                     elif isinstance(item, str):
                         yield item

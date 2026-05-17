@@ -3,10 +3,14 @@ from config import settings
 
 
 def get_llm():
-    return ChatLiteLLM(
+
+    kwargs: dict = dict(
         model=settings.LLM_MODEL,
-        api_base=settings.LLM_API_BASE,
         temperature=settings.LLM_TEMPERATURE,
-        api_key="test",
-        custom_llm_provider="lm_studio",
     )
+    if settings.LLM_API_BASE:
+        kwargs["api_base"] = settings.LLM_API_BASE
+        kwargs["api_key"] = "lm-studio"
+    if settings.LLM_API_KEY:
+        kwargs["api_key"] = settings.LLM_API_KEY
+    return ChatLiteLLM(**kwargs)

@@ -76,9 +76,15 @@ class VectorStore:
     def recreate_collection(self):
         __embedding_size = len(self.model.embed_query("test"))
 
-        self.client.recreate_collection(
+        if self.is_collection_exists():
+            self.client.delete_collection(collection_name=self.collection_name)
+
+        self.client.create_collection(
             collection_name=self.collection_name,
-            vectors_config={"size": __embedding_size, "distance": rest.Distance.COSINE},
+            vectors_config=rest.VectorParams(
+                size=__embedding_size,
+                distance=rest.Distance.COSINE,
+            ),
         )
         if settings.VERBOSE:
             print(

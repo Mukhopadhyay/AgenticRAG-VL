@@ -16,11 +16,12 @@ class Settings(BaseSettings):
     SEARCH_TYPE: str = "mmr"
     SEARCH_K: int = 10
 
-    # LLM stuff
-    LLM_API_BASE: str = "http://127.0.0.1:1234/v1"
-    # LLM_MODEL: str = "google/gemma-4-e4b"
-    LLM_MODEL: str = "nvidia/nemotron-3-nano-4b"
-
+    # LLM stuff - set LLM_MODEL to a LiteLLM-compatible model string.
+    LLM_MODEL: str = "groq/llama-3.1-8b-instant"
+    # For overriding the API base
+    LLM_API_BASE: str | None = None
+    # Explicit API key, if not already set
+    LLM_API_KEY: str | None = None
     LLM_TEMPERATURE: float = 0.7
 
 
