@@ -1,6 +1,8 @@
 from rag.embedder import Embedder
 from rag.vectorstore import VectorStore
 from rag.chunker import Chunker
+from config import settings
+
 from langchain_core.documents import Document
 
 from loaders import load_pdf
@@ -9,7 +11,7 @@ from pathlib import Path
 from typing import Optional
 
 
-def __read_documents(doc_path: Optional[str] = "../data/raw") -> list[Document]:
+def __read_documents(doc_path: Optional[str] = settings.DATA_DIR) -> list[Document]:
     path = Path(doc_path)
     documents = []
     for pdf_path in path.glob("*.pdf"):
@@ -19,6 +21,8 @@ def __read_documents(doc_path: Optional[str] = "../data/raw") -> list[Document]:
 
 
 def ingest():
+    print("Starting ingestion process...")
+
     documents = __read_documents()
 
     # Chunk documents
