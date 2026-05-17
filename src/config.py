@@ -10,6 +10,15 @@ class Settings(BaseSettings):
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_COLLECTION: str = "ViralLens"
 
+    # Retriever settings
+    SEARCH_TYPE: str = "mmr"
+    SEARCH_K: int = 10
+
+    # LLM stuff
+    LLM_API_BASE: str = "http://127.0.0.1:1234/v1"
+    LLM_MODEL: str = "google/gemma-4-e4b"
+    LLM_TEMPERATURE: float = 0.7
+
 
 # Singleton settings class, do not reinstatiate
 settings = Settings()
