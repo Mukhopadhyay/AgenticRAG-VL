@@ -1,4 +1,7 @@
-# Q2 (Domain Specific Embedder)
+## Q1 (Agentic-RAG)
+* https://vstorm.co/glossary/retriever-reader-architecture/
+
+## Q2 (Domain Specific Embedder)
  * https://huggingface.co/blog/nvidia/domain-specific-embedding-finetune
  * https://shawhin.medium.com/fine-tuning-text-embeddings-f913b882b11c
  * https://www.tigerdata.com/blog/general-purpose-vs-domain-specific-embedding-models
