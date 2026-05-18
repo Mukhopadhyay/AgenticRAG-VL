@@ -3,6 +3,7 @@ from agents.retriever import Retriever
 from agents.grader import Grader
 from agents.answerer import Answerer
 from agents.verifier import Verifier
+from agents.deep_agent import DeepAgent
 from graph.state import State
 from llm.client import get_llm
 
@@ -13,6 +14,7 @@ _planner = Planner(llm=_llm)
 _grader = Grader(llm=_llm)
 _answerer = Answerer(llm=_llm)
 _verifier = Verifier(llm=_llm)
+_deep_agent = DeepAgent(llm=_llm)
 
 
 def planner_node(state: State) -> dict:
@@ -51,3 +53,10 @@ def verifier_node(state: State) -> dict:
     answer = state.get("answer", "")
     verified = _verifier.verify(query=query, docs=docs, answer=answer)
     return {"verified": verified}
+
+
+def deep_agent_node(state: State) -> dict:
+    """Escalation node: delegates to the DeepAgent for sophisticated multi-step retrieval."""
+    query = state["query"]
+    answer = _deep_agent.run(query=query)
+    return {"answer": answer, "deep_agent_used": True}

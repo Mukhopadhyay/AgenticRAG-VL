@@ -14,7 +14,7 @@ class Settings(BaseSettings):
 
     # Retriever settings
     SEARCH_TYPE: str = "mmr"
-    SEARCH_K: int = 10
+    SEARCH_K: int = 5
 
     # LLM stuff - set LLM_MODEL to a LiteLLM-compatible model string.
     LLM_MODEL: str = "groq/llama-3.1-8b-instant"

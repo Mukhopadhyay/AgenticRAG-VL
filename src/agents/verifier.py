@@ -3,7 +3,10 @@ from langchain_core.language_models import BaseChatModel
 from config import settings
 from rich import print
 
-_VERIFY_PROMPT = """You are a fact-checking assistant. Decide whether the answer is fully supported by the context documents.
+_VERIFY_PROMPT = """
+You are a fact-checking assistant.
+Decide whether the answer is fully supported 
+by the context dcuments.
 
 Query: {query}
 

@@ -10,3 +10,4 @@ class State(TypedDict):
     answer: str
     verified: bool
     retry_count: int
+    deep_agent_used: bool
