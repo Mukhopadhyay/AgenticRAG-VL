@@ -1,10 +1,8 @@
 import chainlit as cl
 from scripts.ingest import ingest
-from rag.pipeline import RAGPipeline
+from graph.workflow import workflow
 
 ingest()
-
-pipeline = RAGPipeline()
 
 
 @cl.on_message
@@ -12,8 +10,19 @@ async def main(message: cl.Message):
     msg = cl.Message(content="")
     await msg.send()
 
-    async for chunk in pipeline.astream(message.content):
-        await msg.stream_token(chunk)
+    initial_state = {
+        "query": message.content,
+        "rewritten_query": "",
+        "retrieved_docs": [],
+        "filtered_docs": [],
+        "answer": "",
+        "verified": False,
+        "retry_count": 0,
+    }
+
+    final_state = await workflow.ainvoke(initial_state)
+    answer = final_state.get("answer") or "I could not find an answer to your question."
+    await msg.stream_token(answer)
 
 
 @cl.on_chat_resume

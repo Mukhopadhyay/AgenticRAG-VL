@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     LLM_API_KEY: str | None = None
     LLM_TEMPERATURE: float = 0.7
 
+    MAX_RETRIES: int = 2
+
 
 # Singleton settings class, do not reinstatiate
 settings = Settings()

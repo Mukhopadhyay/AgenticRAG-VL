@@ -14,6 +14,9 @@ RUN pip install --no-cache-dir uv
 
 # Copy project metadata & install deps
 COPY pyproject.toml .
+
+RUN uv pip install --system torch --index-url https://download.pytorch.org/whl/cpu
+# RUN uv sync --system --no-cache
 RUN uv pip install --system --no-cache .
 
 # Pre downloading the embedding model at build ttime

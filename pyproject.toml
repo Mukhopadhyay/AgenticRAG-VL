@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "chainlit>=2.11.1",
+    "ipykernel>=7.2.0",
     "langchain>=1.3.1",
     "langchain-community>=0.4.1",
     "langchain-huggingface>=1.2.2",
@@ -13,10 +14,12 @@ dependencies = [
     "langchain-openai>=1.2.1",
     "langchain-qdrant>=1.1.0",
     "langchain-text-splitters>=1.1.2",
+    "notebook>=7.5.6",
     "pydantic>=2.13.4",
     "pydantic-settings>=2.14.1",
     "pymupdf>=1.27.2.3",
     "qdrant-client>=1.18.0",
     "rich>=15.0.0",
     "sentence-transformers>=5.5.0",
+    "zensical>=0.0.42",
 ]

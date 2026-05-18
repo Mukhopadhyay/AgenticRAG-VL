@@ -1,7 +1,12 @@
+site/
 .chainlit/
 *.pdf
 .env
 .DS_Store
+q2/adapted_embedder/
+q2/scratchpad.ipynb
+.ipynb_checkpoints/
+# q2/*.png
 
 # Python-generated files
 __pycache__/
