@@ -1,3 +1,7 @@
+---
+icon: lucide/vector-square
+---
+
 # Workflow — LangGraph & DeepAgents
 
 This document describes the full execution flow of the Agentic RAG pipeline and how LangGraph and DeepAgents collaborate.
@@ -68,7 +72,7 @@ flowchart TD
 ### Happy path
 
 ```
-START → Planner → Retriever → Grader → Answerer → Verifier → END
+START -> Planner -> Retriever -> Grader -> Answerer -> Verifier → END
 ```
 
 1. **Planner** rewrites the raw query into a retrieval-friendly form.
@@ -125,15 +129,15 @@ The DeepAgent reuses the same `BaseChatModel` instance constructed by `get_llm()
 
 ```python
 # After Grader
-if docs_found:           → answerer
-if not docs and retry=0: → planner   (retry hint added)
-if not docs and retry≥1: → deep_agent
+if docs_found:           -> answerer
+if not docs and retry=0: -> planner   (retry hint added)
+if not docs and retry≥1: -> deep_agent
 
 # After Verifier
-if verified:                    → END
-if retry_count >= MAX_RETRIES:  → END  (best-effort answer)
-if not verified and retry=0:    → planner
-if not verified and retry≥1:    → deep_agent
+if verified:                    ->  END
+if retry_count >= MAX_RETRIES:  ->  END  (best-effort answer)
+if not verified and retry=0:    ->  planner
+if not verified and retry≥1:    ->  deep_agent
 ```
 
 ---

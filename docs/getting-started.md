@@ -1,6 +1,8 @@
-# Agentic RAG - VL
+---
+icon: lucide/book
+---
 
-## Getting Started
+# Getting Started
 
 This project uses a lot of external services. Which is why it's recommended to be run inside as a docker container, so that all necessary services can run as images.
 

@@ -6,3 +6,4 @@ This document contains compromises I'm making along the way due to time constrai
 * A reranking agent would be better alongside a conditional loop.
 * Hybrid search with bm25 for faster better retrieval.
 * Missing observability as a service (in Docker-compose)
+* Handling retries with LiteLLM - tenacity would give us better control
